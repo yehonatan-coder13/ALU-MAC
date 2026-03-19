@@ -11,7 +11,7 @@ module convolution_alu #(
     output logic signed [2*WIDTH-1:0] alu_out,
     output logic                      err_detect
 );
-    // הלוגיקה נשארת זהה
+    // Use FF to avoid from overwrite
     logic signed [2*WIDTH-1:0] next_res;
 
     always_comb begin
@@ -25,7 +25,7 @@ module convolution_alu #(
             end
         endcase
     end
-
+    // Add a scan chain and reser signals
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) alu_out <= '0;
         else if (!scan_en) alu_out <= next_res;

@@ -8,7 +8,7 @@ module tb_alu;
     logic [1:0] opcode;
     logic scan_en = 0;
 
-    // יצירת שעון: מחזור של 10ns
+    //Tc=>10 //Tu
     always #5 clk = ~clk;
 
     convolution_alu #(16) dut (
